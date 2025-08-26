@@ -3,12 +3,12 @@ package javaclicalculator;
 import java.util.Scanner;
 
 public class Calculator extends Operations {
-    // Variable to store the result of calculations
-    private double result;
+    // Initialize Result object
+    Result calcResult = new Result();
     
     // Scanner for user input
     Scanner scanner = new Scanner(System.in);
-    String input;
+    double input;
 
     // Clear screen method
     public void clearScreen() {  
@@ -16,6 +16,9 @@ public class Calculator extends Operations {
         System.out.flush();  
     }
 
+    // Method to handle user input for calculations
+
+    // Implement abstract methods from Operations class
     @Override
     public double add(double a, double b) {
         return a + b;
@@ -42,36 +45,45 @@ public class Calculator extends Operations {
     public void mainMenu(){
         
         while (true){
+            if (calcResult.getisEmpty() == false){
+                System.out.println("Last Result: " + calcResult.getResult());
+            }
+
             System.out.println("=============================");
             System.out.println("Please select your selection:");
-            System.out.println("1. Add new student");
-            System.out.println("2. View all students");
-            System.out.println("3. Edit student information");
-            System.out.println("4. Search student by ID");
-            System.out.println("5. Remove student");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+
+            if (calcResult.getisEmpty() == false){
+                System.out.println("9. Reset Result");
+            }
+
             System.out.println("0. Exit");
             System.out.println("=============================");
 
             try {
                 System.out.print("Type in selection> ");
-                input = scanner.nextLine();
+                input = scanner.nextDouble();
 
                 clearScreen();
-                switch (input) {
+                int selection = (int) input;
+                switch (selection) {
                     case 1:
-                        addStudent();
+                        add();
                         break;
                     case 2:
-                        gettAllStudents();
+                        subtract();
                         break;
                     case 3:
-                        updateStudent();
+                        multiply(selection, selection)();
                         break;
                     case 4:
-                        // getStudentById();
+                        divide(selection, selection);
                         break;
-                    case 5:
-                        removeStudent();
+                    case 9:
+                        calcResult.resetResult();
                         break;
                     case 0:
                         System.out.println("See you next time!");
@@ -82,7 +94,7 @@ public class Calculator extends Operations {
                         System.out.println("");
                         break;
                 }
-                if (input == "0") {
+                if (selection == 0) {
                     break;
                 }
             } catch (Exception e) {

@@ -11,7 +11,7 @@ public class Result {
         this.isEmpty = true;
     } 
 
-    // Getter and setter for result
+    // Getter and setter methods
     public double getResult() {
         return result;
     }
@@ -20,7 +20,7 @@ public class Result {
         this.result = result;
     }
 
-    public boolean isEmpty() {
+    public boolean getisEmpty() {
         return isEmpty;
     }
 
