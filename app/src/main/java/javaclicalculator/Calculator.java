@@ -1,9 +1,19 @@
 package javaclicalculator;
 
+import java.util.Scanner;
+
 public class Calculator extends Operations {
     // Variable to store the result of calculations
     private double result;
+    
+    // Scanner for user input
+    Scanner scanner = new Scanner(System.in);
 
+    // Clear screen method
+    public void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
 
     @Override
     public double add(double a, double b) {
